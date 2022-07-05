@@ -5,7 +5,7 @@ import persist from '@rematch/persist'
 import storage from 'redux-persist/lib/storage'
 import immerPlugin from '@rematch/immer'
 import { models, RootModel } from './models'
-import checkIsServer from "./utils/checkIsServer";
+import checkIsMounted from "./utils/checkIsMounted";
 
 type FullModel = ExtraModelsFromLoading<RootModel> &
   ExtraModelsFromUpdated<RootModel>;
@@ -13,7 +13,7 @@ type FullModel = ExtraModelsFromLoading<RootModel> &
 const KEY_OF_STORE = 'test-redux-store';
 
 export const getStore = () => {
-  if (checkIsServer()) {
+  if (!checkIsMounted()) {
     return init<RootModel, FullModel>({
       models,
     });

@@ -1,9 +1,9 @@
-import React from "react";
+import {useState, useEffect} from "react";
 
 export default function useIsMounted(){
-  const [mounted, setMounted] = React.useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  React.useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), [])
 
   return mounted
 };
